@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shokry Mohamed | Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+:root{            --primary: #0a192f;
+    --secondary: #020c1b;
+    --accent: #64ffda;
+    --text-primary: #e6f1ff;
+    --text-secondary: #8892b0;
+    --card-bg: rgba(10, 25, 47, 0.7);
+    --section-padding: 10rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Calibre', 'Inter', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+    border: 3px solid var(--secondary);
+}
+
+/* Navigation */
+header {
+    background: rgba(2, 12, 27, 0.9);
+    padding: 1.5rem 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-100%);
+    animation: slideDown 0.8s 0.5s forwards;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a:hover::before {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--accent);
+}
+
+.nav-links a.active::before {
+    width: 100%;
+}
+
+/* Main content */
+main {
+    margin-top: 80px;
+    padding: 0 10%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sections */
+section {
+    min-height: 100vh;
+    padding: var(--section-padding) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-right: 2rem;
+    white-space: nowrap;
+}
+
+.section-header .line {
+    flex-grow: 1;
+    height: 1px;
+    background: var(--text-secondary);
+    margin-left: 2rem;
+}
+
+/* Home section */
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}
+
+.home-content {
+    max-width: 800px;
+}
+
+.greeting {
+    color: var(--accent);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.home-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    background: linear-gradient(90deg, var(--accent), var(--text-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.home-content h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.home-content p {
+    margin-bottom: 3rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 1.2rem 2rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary);
+    border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(100, 255, 218, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.btn-outline:hover {
+    background: rgba(100, 255, 218, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* About section */
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+}
+
+.about-content p {
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.skill-category h3 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.skill-list {
+    list-style: none;
+}
+
+.skill-list li {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 2rem;
+    font-size: 1.1rem;
+}
+
+.skill-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+/* Projects section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2.5rem;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0) 100%);
+    z-index: -1;
+}
+
+.project-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.project-folder {
+    color: var(--accent);
+    font-size: 3.5rem;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-folder {
+    transform: translateY(-5px);
+}
+
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.project-links a {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.project-links a:hover {
+    color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tech-tag {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Contact section */
+#contact {
+    text-align: center;
+    padding-bottom: 5rem;
+}
+
+#contact h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+#contact p {
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.contact-email {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.contact-email::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.contact-email:hover {
+    transform: translateY(-5px);
+}
+
+.contact-email:hover::after {
+    width: 100%;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.social-links a {
+    color: var(--text-primary);
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(100, 255, 218, 0.05);
+}
+
+.social-links a:hover {
+    color: var(--accent);
+    transform: translateY(-5px);
+    background: rgba(100, 255, 218, 0.1);
+}
+
+.footer-note {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-top: 3rem;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+/* Background elements */
+.bg-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+}
+
+.circle-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent);
+    top: 10%;
+    left: 10%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.circle-2 {
+    width: 700px;
+    height: 700px;
+    background: #ff64f7;
+    bottom: 10%;
+    right: 10%;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--primary);
+    color: var(--text-primary);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+    border: 1px solid var(--accent);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .home-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .home-content h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 6rem;
+    }
+
+    .home-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .home-content h2 {
+        font-size: 2rem;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="bg-elements">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <canvas id="particles-bg"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Shokry Mohamed</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <!-- Home  mohaMEDection -->
+        <section id="home">
+            <div class="home-content">
+                <p class="greeting">Hi, my name is</p>
+                <h1>Shokry Mohamed.</h1>
+                <h2>I craft exceptional digital experiences.</h2>
+                <p>I'm a passionate frontend developer specializing in building beautiful, functional, and accessible web applications. With a keen eye for design and a love for clean code, I create solutions that users love.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-outline">Let's Connect</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About section -->
+        <section id="about">
+            <div class="about-content">
+                <div class="section-header">
+                    <h2>About Me</h2>
+                    <div class="line"></div>
+                </div>
+                <p>Hello! I'm Shokry, a frontend developer with a passion for creating intuitive and visually appealing web experiences. My journey in web development began when I discovered the power of code to bring creative ideas to life.</p>
+                <p>I specialize in building responsive, performant applications using modern web technologies. My approach combines technical expertise with design sensibility to create seamless user experiences that are both beautiful and functional.</p>
+                <p>Here are some technologies I've been working with recently:</p>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <ul class="skill-list">
+                            <li>JavaScript </li>
+                            <li>React.js</li>
+                            <li>Next.js</li>
+                            <li>TypeScript</li>
+                            <li>Tailwind CSS</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <ul class="skill-list">
+                            <li>Node.js</li>
+                            <li>Express</li>
+                            <li>MongoDB</li>
+                            <li>Firebase</li>
+                            <li>GraphQL</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects section -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <div class="line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-folder project-folder"></i>
+                        <div class="project-links">
+                            <a href="#" class="tooltip"><i class="fab fa-github"></i><span class="tooltiptext">View Code</span></a>
+                            <a href="#" class="tooltip"><i class="fas fa-external-link-alt"></i><span class="tooltiptext">Live Demo</span></a>
+                        </div>
+                    </div>
+                    <h3>E-Commerce Platform</h3>
+                    <p>A complete e-commerce solution with product catalog, cart functionality, and secure checkout process. Built with modern web technologies for optimal performance.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe API</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-folder project-folder"></i>
+                        <div class="project-links">
+                            <a href="#" class="tooltip"><i class="fab fa-github"></i><span class="tooltiptext">View Code</span></a>
+                            <a href="#" class="tooltip"><i class="fas fa-external-link-alt"></i><span class="tooltiptext">Live Demo</span></a>
+                        </div>
+                    </div>
+                    <h3>Task Management App</h3>
+                    <p>A productivity application featuring task organization, team collaboration, and progress tracking. Includes drag-and-drop functionality and real-time updates.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">DnD Kit</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-folder project-folder"></i>
+                        <div class="project-links">
+                            <a href="#" class="tooltip"><i class="fab fa-github"></i><span class="tooltiptext">View Code</span></a>
+                            <a href="#" class="tooltip"><i class="fas fa-external-link-alt"></i><span class="tooltiptext">Live Demo</span></a>
+                        </div>
+                    </div>
+                    <h3>Portfolio Template</h3>
+                    <p>A customizable portfolio template featuring modern design, smooth animations, and responsive layout. Perfect for creatives and developers to showcase their work.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">GSAP</span>
+                        <span class="tech-tag">SCSS</span>
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section -->
+        <section id="contact">
+            <div class="section-header" style="justify-content: center;">
+                <h2>Get In Touch</h2>
+            </div>
+            <p>I'm currently looking for new opportunities and would love to hear from you. Whether you have a project in mind or just want to say hello, feel free to reach out!</p>
+            <a href="mailto:smdozm77@gmail.com" class="contact-email">smdozn77@gmail.com</a>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Codepen"><i class="fab fa-codepen"></i></a>
+                <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+            <p class="footer-note">Designed & Built with  by Shokry Mohamed</p>
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation active state
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        function updateActiveNav() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('load', updateActiveNav);
+
+        // Scroll animations
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Particle background
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('particles-bg');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                    this.color = `rgba(100, 255, 218, ${Math.random() * 0.5 + 0.1})`;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    if (this.x > canvas.width || this.x < 0) {
+                        this.speedX = -this.speedX;
+                    }
+                    
+                    if (this.y > canvas.height || this.y < 0) {
+                        this.speedY = -this.speedY;
+                    }
+                }
+                
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            // Create particles
+            const particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw connecting lines
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 150) {
+                            ctx.strokeStyle = `rgba(100, 255, 218, ${1 - distance/150})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                
+                // Update and draw particles
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+        
+    </script>
+</body>
+</html>
